@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Archivist | Inventory Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .archival-gradient {
+            background: linear-gradient(135deg, #004471 0%, #005c97 100%);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#b9c8da",
+              "tertiary": "#174b26",
+              "primary-container": "#005c97",
+              "on-secondary-fixed-variant": "#3a4857",
+              "on-primary-container": "#add3ff",
+              "tertiary-fixed": "#b8f0be",
+              "surface-container-highest": "#e0e3e5",
+              "surface-tint": "#11629d",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#191c1e",
+              "on-tertiary-fixed-variant": "#1d502b",
+              "on-background": "#191c1e",
+              "on-tertiary-container": "#a5ddac",
+              "surface-dim": "#d8dadc",
+              "on-primary-fixed-variant": "#00497a",
+              "error": "#ba1a1a",
+              "secondary-fixed": "#d5e4f7",
+              "primary-fixed-dim": "#9bcaff",
+              "primary-fixed": "#d0e4ff",
+              "on-tertiary-fixed": "#00210a",
+              "primary": "#004471",
+              "outline-variant": "#c1c7d1",
+              "inverse-surface": "#2d3133",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#414750",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f2f4f6",
+              "on-primary-fixed": "#001d35",
+              "tertiary-fixed-dim": "#9cd4a3",
+              "surface": "#f7f9fb",
+              "surface-bright": "#f7f9fb",
+              "surface-variant": "#e0e3e5",
+              "on-error": "#ffffff",
+              "on-secondary-container": "#586676",
+              "inverse-primary": "#9bcaff",
+              "outline": "#717881",
+              "secondary-container": "#d5e4f7",
+              "surface-container-high": "#e6e8ea",
+              "on-primary": "#ffffff",
+              "surface-container": "#eceef0",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#30633c",
+              "on-secondary-fixed": "#0e1d2a",
+              "secondary": "#526070",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#eff1f3",
+              "background": "#f7f9fb"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary/10">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-surface-container-low flex flex-col p-4 gap-2 z-50">
+<div class="mb-8 px-2">
+<h1 class="text-xl font-bold tracking-tight text-primary font-headline">Digital Archivist</h1>
+<p class="text-xs text-on-surface-variant font-medium">Enterprise Library</p>
+</div>
+<nav class="flex flex-col gap-1 flex-1">
+<!-- Active State: Inventory -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-semibold scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+<span>Circulation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Finance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span>Admin</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 border-t border-outline-variant/10 pt-4">
+<button class="archival-gradient text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 mb-4 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>Issue Book</span>
+</button>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span>Support</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="sticky top-0 z-40 bg-white/70 backdrop-blur-xl flex justify-between items-center h-16 px-8 ml-64 shadow-[0_24px_40px_rgba(25,28,30,0.04)]">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-outline-variant/15 rounded-full py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-on-surface-variant/50" placeholder="Search archives by ISBN, Title, or Author..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<p class="text-xs font-bold font-headline text-primary">Head Librarian</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Institution Admin</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="portrait of a professional male librarian in a clean office setting, soft professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvrzyCEm-PX61UGSshaLMu9D2NNMVVbU79FPpQdNAA6m5tpidqPq9EA6FFgBGzfmQ7tAzYxnFOSYwcDHzEolyX3X2Cnc1pnSnRwGXlz31rMaaa3PF46ADU_ic9sVa_gpYGxl5zVy2D8dZQrYSOvgaFvoTntK_pFF4a9J5C5GkfCTp1JoCYkQ7ioTweWdP-RfWuG-MvrFWsTJh2EH9mmD3mGzGXdA71qetJGHE9Om2fdL365IZlH9Ckov7_nlopDLyWaPJvAvs-AVrJ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Stage -->
+<main class="ml-64 p-8 min-h-screen">
+<!-- Dashboard Header -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-3xl font-bold font-headline text-primary tracking-tight">Catalog Management</h2>
+<p class="text-on-surface-variant mt-1">Review, audit, and expand the institutional physical repository.</p>
+</div>
+<button class="archival-gradient text-on-primary px-6 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined" data-icon="library_add">library_add</span>
+<span>Add Book</span>
+</button>
+</div>
+<!-- Summary Stats Bento -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-lg" data-icon="menu_book">menu_book</span>
+<span class="text-tertiary text-xs font-semibold bg-tertiary-fixed px-2 py-1 rounded-full">+12 today</span>
+</div>
+<p class="text-sm text-on-surface-variant font-medium">Total Books</p>
+<p class="text-3xl font-bold font-headline text-primary mt-1">42,892</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed p-2 rounded-lg" data-icon="auto_stories">auto_stories</span>
+</div>
+<p class="text-sm text-on-surface-variant font-medium">Active Loans</p>
+<p class="text-3xl font-bold font-headline text-primary mt-1">1,405</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-error bg-error-container p-2 rounded-lg" data-icon="timer_off">timer_off</span>
+</div>
+<p class="text-sm text-on-surface-variant font-medium">Overdue Returns</p>
+<p class="text-3xl font-bold font-headline text-error mt-1">84</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-on-surface-variant bg-surface-container-highest p-2 rounded-lg" data-icon="room_service">room_service</span>
+</div>
+<p class="text-sm text-on-surface-variant font-medium">Reservation Requests</p>
+<p class="text-3xl font-bold font-headline text-primary mt-1">219</p>
+</div>
+</div>
+<!-- Table Controls -->
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm border border-outline-variant/10">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-lowest">
+<div class="flex gap-2">
+<button class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-2 rounded-full text-xs font-bold">All Items</button>
+<button class="hover:bg-surface-container-low text-on-surface-variant px-4 py-2 rounded-full text-xs font-medium transition-colors">Available</button>
+<button class="hover:bg-surface-container-low text-on-surface-variant px-4 py-2 rounded-full text-xs font-medium transition-colors">Issued</button>
+<button class="hover:bg-surface-container-low text-on-surface-variant px-4 py-2 rounded-full text-xs font-medium transition-colors">Maintenance</button>
+</div>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary text-sm font-medium px-3 py-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="filter_list">filter_list</span>
+<span>Advanced Filters</span>
+</button>
+</div>
+<!-- Inventory Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Book Title</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Author</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">ISBN</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Rack Location</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-surface-container-high rounded shadow-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="a professional book cover design with modern minimalist typography and deep blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzkbDr5qpYRYW5qcOsQQEkJoQhOnBuFZC9YIrhhATsldlnpBwOSuCdhvaMieU8SbVWn7zyuvbdAdLD712zp9z6HJg3HwSNgeeBkOH0k5rsWs-J8h9jLPe_V4qboVb5_payg5AX2Rtggt0vKQ4nN5wUqKVA2M3F_XSiKBZWUVhNCFDyJp5bHmwIm02R10Q2ZHbjq4C35PcmdnBd91Tbo9CWnzDCkO1dcvAyHQoGEDNmBJJ8x-h9OiL4cWWM0Hj8gHvFVbZ34Pf2Y1qV"/>
+</div>
+<span class="font-semibold text-primary">The Architecture of Information</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Rosenfeld, Louis</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">978-1491911686</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">04-B / Shelf 2</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold px-2 py-1 rounded-full uppercase">Available</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-surface-container-high rounded shadow-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="vibrant educational book cover on a library shelf background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwgWoB49E4iX0RsM-JCPLXhHBekPcyPixSmYEGIJcosD1pLoy2m20UQRGk5WsKBsDn0aPl_MvAFF6Cqy_bEsTkfRjmTvI05z_V-QWqyHoJ3lVDTpEtJ8qUcfm2d1TJ4adiSnh2vkI_Lv4UMyk6ON85wN_lHx00Oeyz8qcIcLJVqPqexuLmtcQRIjG9wO9UCaOtyC_39JdMKq3ETE788OFcyrh2PwkOTrbq0y_-sazGzwOyRTY53YSLiwlMywU-9Z9ZSWmhNEbHbxC7"/>
+</div>
+<span class="font-semibold text-primary">Quantum Computing Principles</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Yanofsky, Noson S.</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">978-0262516631</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">12-D / Shelf 4</td>
+<td class="px-6 py-4">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase">Issued</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-surface-container-high rounded shadow-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="antique leather bound book with gold leaf lettering on a dark wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi38eNzN_rBcn1bm1g9aFr0p1s7_ooXqupPoapBUgAt9sD9CsEJN1OoD1sxVFLuSaR_zYVbopVF4hVGnC_wTWUwJJgIq7LpArMJneWUw2Qm3Ed0VGp1JxGteztJnS4QJbUBSMb-mciNGiYcoYaY8lO4deyJHPnF2LJ5QS895klvJNQCXpWnZuzzdmfmccL0-SBuxcY5CsqBepfaQQkJ2TKFmPvXiVNaCrAPcHaZfs9s1LswfzQ-6B4xONvIZIU8EKajONCzU5ZxoN0"/>
+</div>
+<span class="font-semibold text-primary">History of Mesopotamian Art</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Frankfort, Henri</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">978-0300052961</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">02-A / Vault 1</td>
+<td class="px-6 py-4">
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase">Maintenance</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-surface-container-high rounded shadow-sm overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="sleek professional book cover with abstract geometric patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa-1S4BGauWB-3NHdCDzUIa4x_J66-djdeETqRXtcwhNcaAc7q_adwJPnX7prOjPVo8EF3uRUvRO3FRxlTfp1iuErXlFOdsnLYjtH2DXafmyIJm_c233681g6mnaPx5LuRCOviJU73U1wRG9y7CAqGdx8uAr9XK8CYDeRgyEf1z2t3WsUssDnyqOXamz0ksFospAcgPMb_MusXijaRFJ-Dby9UByz584r_jMZg1DsutVWO5_hUpVWVLVyxLagNyG32MW8P0awu17wQ"/>
+</div>
+<span class="font-semibold text-primary">Modern Macroeconomics</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Sanjay Chugh</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">978-0262029377</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">08-F / Shelf 1</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold px-2 py-1 rounded-full uppercase">Available</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 border-t border-outline-variant/10 flex justify-between items-center text-sm text-on-surface-variant font-medium">
+<span>Showing 1-10 of 42,892 entries</span>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-lg">1</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded-lg transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded-lg transition-colors">3</button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay (Floating Action Context) -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[60] flex items-center justify-center hidden">
+<div class="bg-white w-full max-w-xl rounded-3xl shadow-[0_32px_64px_rgba(0,0,0,0.15)] overflow-hidden">
+<div class="archival-gradient p-8 text-white relative">
+<button class="absolute top-6 right-6 hover:bg-white/20 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h3 class="text-2xl font-bold font-headline mb-1">Add New Acquisition</h3>
+<p class="text-white/80 text-sm">Enter ISBN to auto-populate metadata from worldcat registry.</p>
+</div>
+<form class="p-8 space-y-6">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">ISBN-13 Registry Search</label>
+<div class="flex gap-3">
+<input class="flex-1 bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary/20 text-on-surface font-mono" type="text" value="978-0123456789"/>
+<button class="bg-primary-fixed text-primary px-6 rounded-xl font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="search_insights">search_insights</span>
+                            Fetch
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Primary Author</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-xl py-3 px-4 text-on-surface-variant italic" disabled="" placeholder="Loading..." type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Publishing Year</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-xl py-3 px-4 text-on-surface-variant italic" disabled="" placeholder="Loading..." type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Classification &amp; Rack</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary/20 text-on-surface">
+<option>General Science (00-F)</option>
+<option>Digital Humanities (04-B)</option>
+<option>Rare Collections (Vault)</option>
+</select>
+</div>
+<div class="pt-4 flex gap-4">
+<button class="flex-1 py-3 px-6 rounded-xl border border-outline-variant text-on-surface-variant font-bold hover:bg-surface transition-colors" type="button">Discard</button>
+<button class="flex-[2] archival-gradient text-white py-3 px-6 rounded-xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity" type="submit">Confirm Acquisition</button>
+</div>
+</form>
+</div>
+</div>
+</body></html>

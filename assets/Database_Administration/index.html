@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Database Administration | Library Archivist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d8dadc",
+              "secondary-container": "#d5e4f7",
+              "inverse-primary": "#9bcaff",
+              "error-container": "#ffdad6",
+              "on-primary-fixed": "#001d35",
+              "on-secondary-fixed-variant": "#3a4857",
+              "on-primary-fixed-variant": "#00497a",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#9cd4a3",
+              "secondary-fixed-dim": "#b9c8da",
+              "surface-container-high": "#e6e8ea",
+              "surface-variant": "#e0e3e5",
+              "background": "#f7f9fb",
+              "on-tertiary-fixed-variant": "#1d502b",
+              "inverse-on-surface": "#eff1f3",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "outline-variant": "#c1c7d1",
+              "on-surface": "#191c1e",
+              "outline": "#717881",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f2f4f6",
+              "surface-container-highest": "#e0e3e5",
+              "surface-container": "#eceef0",
+              "tertiary-fixed": "#b8f0be",
+              "secondary-fixed": "#d5e4f7",
+              "on-surface-variant": "#414750",
+              "surface-tint": "#11629d",
+              "primary-fixed-dim": "#9bcaff",
+              "on-tertiary-container": "#a5ddac",
+              "secondary": "#526070",
+              "on-tertiary-fixed": "#00210a",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#f7f9fb",
+              "on-primary": "#ffffff",
+              "surface": "#f7f9fb",
+              "on-secondary-fixed": "#0e1d2a",
+              "primary-container": "#005c97",
+              "inverse-surface": "#2d3133",
+              "tertiary": "#174b26",
+              "primary": "#004471",
+              "on-secondary-container": "#586676",
+              "primary-fixed": "#d0e4ff",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "tertiary-container": "#30633c",
+              "on-primary-container": "#add3ff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex">
+<!-- SideNavBar (Authority: JSON & Design System) -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-50 dark:bg-slate-950 flex flex-col p-4 space-y-2">
+<div class="px-2 py-6 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h2 class="font-['Manrope'] font-bold text-sky-900 dark:text-sky-400 leading-tight">Central Library</h2>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">System Admin</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-transform duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-medium text-sm">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-transform duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+<span class="font-medium text-sm">Circulation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-transform duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-medium text-sm">Finance</span>
+</a>
+<!-- Active State: Admin -->
+<a class="flex items-center gap-3 px-3 py-2 bg-sky-100 dark:bg-sky-900/30 text-sky-900 dark:text-sky-200 rounded-lg font-semibold transition-transform duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings_account_box" style="font-variation-settings: 'FILL' 1;">settings_account_box</span>
+<span class="font-medium text-sm">Admin</span>
+</a>
+</nav>
+<div class="pt-4 mt-4 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="text-sm font-medium">Support</span>
+</button>
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-sm font-medium">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Stage -->
+<main class="flex-1 ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-white/70 backdrop-blur-xl flex justify-between items-center px-6 py-3 shadow-sm shadow-sky-900/5">
+<div class="flex items-center gap-4">
+<h1 class="text-xl font-['Manrope'] font-bold tracking-tight text-sky-900">Library Archivist</h1>
+<div class="h-6 w-[1px] bg-slate-200"></div>
+<span class="text-slate-500 font-medium text-sm">Database Node: US-08</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-4 py-2 rounded-md font-semibold text-sm shadow-sm active:opacity-80 transition-all">
+                    New Transaction
+                </button>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">Alex Mercer</p>
+<p class="text-[10px] text-slate-500">Superuser</p>
+</div>
+<img alt="Librarian Profile" class="w-8 h-8 rounded-full border border-sky-100 object-cover" data-alt="professional portrait of a system administrator in a modern office setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl_rrE0B6XvC_M2Nc_Plm9mlqfpBBKCCy7Zth6fuhcQ7rFa8VyoKNIRHofZs0lcDfPRwwWPrOmyAtoMm1PcTt3s-QIgPJGppE-7K5xm6VLjOz_yt64GanSXuzwkffn-mqPGacVOPDg4C-LyxN8Rvy6lz3S1yCGL4kFMppxVn6X9yC3sYZK2LM96ZjVQjPctgdfttMOTz59v3DwbjkbHrjl98OrGQ4ftUHUSjujRkBKpFLnmTR1lmzqYv-qmx-zY_RDJxny8S9H_9SJ"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 space-y-8">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-bold font-['Manrope'] text-primary">Database Administration</h2>
+<p class="text-on-surface-variant mt-1">Real-time health monitoring and structural integrity maintenance.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container-high text-on-surface font-semibold rounded-md text-sm hover:bg-surface-dim transition-colors">
+                        Refresh Diagnostics
+                    </button>
+<button class="px-4 py-2 bg-gradient-to-br from-primary to-primary-container text-white font-semibold rounded-md text-sm shadow-lg active:opacity-80 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="backup">backup</span>
+                        Trigger Manual Backup
+                    </button>
+</div>
+</div>
+<!-- Bento Grid: Health & Metrics -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Database Health Status -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-transparent flex flex-col justify-between">
+<div class="flex justify-between items-start mb-6">
+<h3 class="title-sm text-slate-500 font-semibold uppercase tracking-wider">Health Status</h3>
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> OPERATIONAL
+                        </span>
+</div>
+<div class="space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-4xl font-['Manrope'] font-extrabold text-primary">99.98%</p>
+<p class="text-xs text-on-surface-variant font-medium">System Uptime (30d)</p>
+</div>
+<div class="text-right">
+<p class="text-2xl font-['Manrope'] font-bold text-tertiary">14ms</p>
+<p class="text-xs text-on-surface-variant font-medium">Avg Latency</p>
+</div>
+</div>
+<div class="w-full h-12 flex items-end gap-[2px]">
+<!-- Mock Uptime Graph -->
+<div class="flex-1 bg-tertiary/20 h-4/5 rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/40 h-full rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/30 h-3/4 rounded-t-sm"></div>
+<div class="flex-1 bg-error/40 h-1/4 rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/50 h-5/6 rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/30 h-4/5 rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/40 h-full rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/30 h-3/4 rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/50 h-5/6 rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/40 h-full rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- Storage Usage Visualization -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+<h3 class="title-sm text-slate-500 font-semibold uppercase tracking-wider mb-6">Storage Allocation</h3>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-primary"></div>
+<span class="text-sm font-semibold">Accounts DB</span>
+</div>
+<span class="text-xs text-slate-500">244.5 GB / 500 GB</span>
+</div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 48.9%"></div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-secondary"></div>
+<span class="text-sm font-semibold">Transaction Logs</span>
+</div>
+<span class="text-xs text-slate-500">18.2 GB / 50 GB</span>
+</div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 36.4%"></div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 flex flex-col justify-center items-center text-center border border-dashed border-outline-variant/30">
+<p class="text-xs font-bold text-on-surface-variant uppercase mb-2">Total Disk Consumption</p>
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-dasharray="339.29" stroke-dashoffset="190" stroke-width="12"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="text-xl font-extrabold text-primary">44%</span>
+<span class="text-[8px] font-bold text-slate-500">TOTAL USED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Integrity Check History -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-6 border-b border-surface-container-low flex justify-between items-center">
+<h3 class="title-sm text-slate-500 font-semibold uppercase tracking-wider">Integrity Check History</h3>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-3 text-[10px] font-bold text-slate-500 uppercase">Check Timestamp</th>
+<th class="px-6 py-3 text-[10px] font-bold text-slate-500 uppercase">Check Type</th>
+<th class="px-6 py-3 text-[10px] font-bold text-slate-500 uppercase">Objects</th>
+<th class="px-6 py-3 text-[10px] font-bold text-slate-500 uppercase">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-medium text-on-surface">Oct 24, 2023 · 04:00 AM</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Full Physical Consistency</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">12,442</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded">SUCCESS</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-medium text-on-surface">Oct 23, 2023 · 04:00 AM</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Index Integrity Scan</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">8,109</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded">SUCCESS</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-medium text-on-surface">Oct 22, 2023 · 04:00 AM</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Full Physical Consistency</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">12,438</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded">SUCCESS</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-medium text-on-surface">Oct 21, 2023 · 09:15 PM</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Manual Patch Check</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">144</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-error-container text-on-error-container text-[10px] font-bold rounded">WARNING</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Backup Schedule & Recent Logs -->
+<div class="col-span-12 lg:col-span-5 space-y-6">
+<!-- Backup Schedule Card -->
+<div class="bg-primary text-white p-6 rounded-xl shadow-lg relative overflow-hidden">
+<div class="absolute -right-8 -top-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="settings_backup_restore">settings_backup_restore</span>
+</div>
+<h3 class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80 mb-4">Upcoming Schedule</h3>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="schedule">schedule</span>
+</div>
+<div>
+<p class="text-xl font-bold">Incremental Backup</p>
+<p class="text-sm opacity-70">Runs in 4h 22m (00:00 UTC)</p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-xs py-2 border-b border-white/10">
+<span class="opacity-70">Last Successful</span>
+<span class="font-semibold">Today, 04:12 AM</span>
+</div>
+<div class="flex justify-between text-xs py-2 border-b border-white/10">
+<span class="opacity-70">Storage Destination</span>
+<span class="font-semibold">S3-East-Archival</span>
+</div>
+<div class="flex justify-between text-xs pt-2">
+<span class="opacity-70">Retention Policy</span>
+<span class="font-semibold">90 Days / GFS</span>
+</div>
+</div>
+</div>
+<!-- System Audit Log Snippet -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+<h3 class="title-sm text-slate-500 font-semibold uppercase tracking-wider mb-4">System Audit Log</h3>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+<div>
+<p class="text-xs font-semibold">User 'A.Mercer' modified index: idx_isbn_lookup</p>
+<p class="text-[10px] text-slate-500 mt-1">12 minutes ago · Node US-08-A</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 rounded-full bg-tertiary mt-1.5 flex-shrink-0"></div>
+<div>
+<p class="text-xs font-semibold">Automatic cleanup of Transaction Logs completed</p>
+<p class="text-[10px] text-slate-500 mt-1">2 hours ago · System Process</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+<div>
+<p class="text-xs font-semibold">Security policy 'SSL-Strict' enforced on cluster</p>
+<p class="text-[10px] text-slate-500 mt-1">5 hours ago · Global Admin</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-xs font-bold text-primary border border-primary/20 rounded-md hover:bg-primary/5 transition-colors">
+                            View Full Audit Trail
+                        </button>
+</div>
+</div>
+</div>
+<!-- Detailed Metrics Asymmetric Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-low p-5 rounded-lg border border-transparent flex items-center gap-4">
+<div class="p-3 bg-secondary-container text-on-secondary-container rounded-md">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Database Size</p>
+<p class="text-lg font-bold font-['Manrope']">412.88 GB</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-lg border border-transparent flex items-center gap-4">
+<div class="p-3 bg-secondary-container text-on-secondary-container rounded-md">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">IOPS (Read/Write)</p>
+<p class="text-lg font-bold font-['Manrope']">1.2k / 450</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-lg border border-transparent flex items-center gap-4">
+<div class="p-3 bg-secondary-container text-on-secondary-container rounded-md">
+<span class="material-symbols-outlined" data-icon="memory">memory</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Buffer Pool Hit Ratio</p>
+<p class="text-lg font-bold font-['Manrope']">98.4%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Tonal Layer -->
+<footer class="mt-auto py-6 px-8 bg-surface-container-low border-t border-surface-variant flex justify-between items-center text-on-surface-variant">
+<p class="text-[10px] font-medium tracking-wide">SYSTEM NODE US-08-ARCHIVE-PRIME · KERNEL V4.4.1</p>
+<div class="flex gap-4">
+<a class="text-[10px] font-bold hover:text-primary transition-colors" href="#">ARCHITECTURE DOCS</a>
+<a class="text-[10px] font-bold hover:text-primary transition-colors" href="#">SECURITY COMPLIANCE</a>
+<a class="text-[10px] font-bold hover:text-primary transition-colors" href="#">API ACCESS</a>
+</div>
+</footer>
+</main>
+</body></html>

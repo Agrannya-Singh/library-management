@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Discovery Portal | Library Archivist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d8dadc",
+              "secondary-container": "#d5e4f7",
+              "inverse-primary": "#9bcaff",
+              "error-container": "#ffdad6",
+              "on-primary-fixed": "#001d35",
+              "on-secondary-fixed-variant": "#3a4857",
+              "on-primary-fixed-variant": "#00497a",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#9cd4a3",
+              "secondary-fixed-dim": "#b9c8da",
+              "surface-container-high": "#e6e8ea",
+              "surface-variant": "#e0e3e5",
+              "background": "#f7f9fb",
+              "on-tertiary-fixed-variant": "#1d502b",
+              "inverse-on-surface": "#eff1f3",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "outline-variant": "#c1c7d1",
+              "on-surface": "#191c1e",
+              "outline": "#717881",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f2f4f6",
+              "surface-container-highest": "#e0e3e5",
+              "surface-container": "#eceef0",
+              "tertiary-fixed": "#b8f0be",
+              "secondary-fixed": "#d5e4f7",
+              "on-surface-variant": "#414750",
+              "surface-tint": "#11629d",
+              "primary-fixed-dim": "#9bcaff",
+              "on-tertiary-container": "#a5ddac",
+              "secondary": "#526070",
+              "on-tertiary-fixed": "#00210a",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#f7f9fb",
+              "on-primary": "#ffffff",
+              "surface": "#f7f9fb",
+              "on-secondary-fixed": "#0e1d2a",
+              "primary-container": "#005c97",
+              "inverse-surface": "#2d3133",
+              "tertiary": "#174b26",
+              "primary": "#004471",
+              "on-secondary-container": "#586676",
+              "primary-fixed": "#d0e4ff",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "tertiary-container": "#30633c",
+              "on-primary-container": "#add3ff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #004471 0%, #005c97 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-surface-container-low flex flex-col p-4 space-y-2 transition-transform duration-200 ease-in-out">
+<div class="px-2 py-6 mb-4">
+<h1 class="font-headline font-bold text-primary text-xl tracking-tight">Central Library</h1>
+<p class="text-xs text-on-surface-variant font-medium">System Admin</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Inventory (Active based on Discovery intent) -->
+<a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-semibold transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label text-sm">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-medium transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+<span class="font-label text-sm">Circulation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-medium transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label text-sm">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-medium transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings_account_box">settings_account_box</span>
+<span class="font-label text-sm">Admin</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-outline-variant/15 space-y-1">
+<button class="w-full flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-medium transition-all">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-label text-sm">Support</span>
+</button>
+<button class="w-full flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-medium transition-all">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label text-sm">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Stage -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen relative">
+<!-- TopAppBar (Shared Component) -->
+<header class="w-full sticky top-0 z-40 glass-panel shadow-sm shadow-primary/5 flex justify-between items-center px-6 py-3">
+<div class="flex items-center gap-4">
+<span class="font-headline font-bold text-lg text-primary">Library Archivist</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-surface-container-highest flex items-center justify-center ml-2 border border-outline-variant/20">
+<img alt="Librarian Profile" class="w-full h-full object-cover" data-alt="Professional headshot of a librarian in a clean, modern office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7ZCXhVlRC5SGDxVmEq_tI56ppP864GuywLn8ax68wlN9mGkeo7P0dRIgnES8Fe86LAcNekULbxY7_-o-HPd1QWepo68ZGQDPFWKtNKc1tpOYMyfGRy0hG2_F2y-0Y_P4Rt7ivmEyk5ci4_dK5E8CWrK6CrZHUB8FWslcetrGk9WeE_-OdH4VUVwAMgeAw6tMpgKbULLTa4QjVWMJ2UALyxdqP90UsDybehMgGuTngkCrsl0w9L0hm-muwf9YFyU7mF17PV0_w1BMM"/>
+</div>
+</div>
+</header>
+<!-- Discovery Portal Canvas -->
+<div class="p-8 max-w-7xl mx-auto w-full space-y-10">
+<!-- Hero Search Section -->
+<section class="space-y-6 text-center max-w-3xl mx-auto">
+<h2 class="font-headline text-4xl font-bold text-primary tracking-tight">Discovery Portal</h2>
+<p class="text-on-surface-variant font-body">Access over 2.4 million archival records, manuscripts, and modern volumes.</p>
+<div class="relative group">
+<div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full pl-14 pr-6 py-5 bg-surface-container-lowest border border-outline-variant/15 rounded-xl shadow-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-lg transition-all placeholder:text-outline/60" placeholder="Search by Title, Author, or ISBN..." type="text"/>
+<!-- Auto-suggestions dropdown (Visual Mock) -->
+<div class="absolute top-full left-0 right-0 mt-2 bg-surface-container-lowest border border-outline-variant/15 rounded-xl shadow-xl z-30 hidden group-focus-within:block overflow-hidden">
+<div class="px-4 py-3 border-b border-outline-variant/10 flex items-center justify-between bg-surface-container-low">
+<span class="text-xs font-semibold text-outline uppercase tracking-wider">Suggested Collections</span>
+</div>
+<div class="p-2">
+<button class="w-full text-left px-3 py-2 hover:bg-surface-container-low rounded-lg flex items-center gap-3 transition-colors">
+<span class="material-symbols-outlined text-primary/60" data-icon="history_edu">history_edu</span>
+<span class="text-sm font-medium">History of the Northern Silk Road (1845)</span>
+</button>
+<button class="w-full text-left px-3 py-2 hover:bg-surface-container-low rounded-lg flex items-center gap-3 transition-colors">
+<span class="material-symbols-outlined text-primary/60" data-icon="menu_book">menu_book</span>
+<span class="text-sm font-medium">History of Modern Architecture - Vol. 2</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Advanced Filters -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+<div class="space-y-2">
+<label class="font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider px-1">Subject</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg font-body text-sm py-2.5 focus:ring-2 focus:ring-primary/20">
+<option>All Subjects</option>
+<option>Architecture</option>
+<option>History</option>
+<option>Classical Literature</option>
+<option>Quantum Physics</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider px-1">Publication Year</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg font-body text-sm py-2.5 focus:ring-2 focus:ring-primary/20">
+<option>Any Year</option>
+<option>Pre-1900</option>
+<option>1900 - 1950</option>
+<option>1951 - 2000</option>
+<option>2001 - Present</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider px-1">Genre</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg font-body text-sm py-2.5 focus:ring-2 focus:ring-primary/20">
+<option>All Genres</option>
+<option>Academic Journal</option>
+<option>Rare Manuscript</option>
+<option>Periodical</option>
+<option>Reference Book</option>
+</select>
+</div>
+<button class="primary-gradient text-on-primary font-label font-semibold py-2.5 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                    Apply Filters
+                </button>
+</section>
+<!-- Active Chips -->
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-2">
+                    Architecture <span class="material-symbols-outlined text-xs cursor-pointer" data-icon="close">close</span>
+</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-2">
+                    Post-2001 <span class="material-symbols-outlined text-xs cursor-pointer" data-icon="close">close</span>
+</span>
+<button class="text-primary text-xs font-semibold hover:underline px-2">Clear All</button>
+</div>
+<!-- Results Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pb-20">
+<!-- Book Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex border border-outline-variant/10 group">
+<div class="w-32 flex-shrink-0 relative overflow-hidden">
+<img alt="Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern book cover with minimalist typography and abstract blue geometric shapes on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk4OG6txQgarc70klQu2m_kINkWqgMAmjrvBKDhnZfN1Oi8UzqLflwLuCp3oXVUvtK4_5nvBzEMSA06hSHDdvtyhjB28ICIT7N2spB3isQoTuo-TTMCWfYX41ax-SLhs6WVNqrODugHuRCT0PtnFBz5JuRN5Vyi0-fEzI8UlHrxFEmbX1UpS2v8qnM539iqpD9nnL3B3O-1CdU5eWQgnZiR6-cYjVypHJTD7BTSDVYhFrVJoSFSXRmGlXcffK--5yRRswDPxhAiTk2"/>
+</div>
+<div class="p-5 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter">Available</span>
+<span class="text-on-surface-variant font-label text-[10px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="shelves">shelves</span>
+                                    RACK A-12
+                                </span>
+</div>
+<h3 class="font-headline font-bold text-on-surface leading-tight mb-1">Principles of Modern Urbanism</h3>
+<p class="text-xs text-on-surface-variant mb-3">By Dr. Elena Vance (2018)</p>
+<p class="text-[11px] text-outline line-clamp-2 leading-relaxed">A comprehensive study of infrastructure and sociological impact in mega-cities...</p>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 primary-gradient text-on-primary text-xs font-bold py-2 rounded shadow-sm hover:opacity-90 transition-opacity">Borrow</button>
+<button class="px-3 bg-surface-container-high text-on-surface-variant text-xs font-bold py-2 rounded hover:bg-surface-dim transition-colors">Details</button>
+</div>
+</div>
+</article>
+<!-- Book Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex border border-outline-variant/10 group">
+<div class="w-32 flex-shrink-0 relative overflow-hidden">
+<img alt="Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Vintage leather bound book with gold foil lettering on a dark wooden background with moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJyWUedj3kdWLO5NoFE1ITb6jfTLKjQpVs64vJX6rwAryGFTN40q6CMcRWNkU4rmejguMfP4GDA9KVlk2s4DBF9YdTwCqf_1kGhIIi_89GQQUDyOWNOGWAMuueD0FoC7W3UjNUiOUK_m-XRcsHj8FsceDtWHL9n4Zi1IkWxq8_oOPRQwB2FhrQ1sna71qWZgz4t6qJjv9jIu5rWh8NBvtrdg_VtbOL5Hfoo5pKFqkkCz_EmTiYXXs42Wq_bWUoBHo9qOxW8PKGiZ1Y"/>
+</div>
+<div class="p-5 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter">On Loan</span>
+<span class="text-on-surface-variant font-label text-[10px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="shelves">shelves</span>
+                                    VAULT-02
+                                </span>
+</div>
+<h3 class="font-headline font-bold text-on-surface leading-tight mb-1">The Great Gatsby: Original Edition</h3>
+<p class="text-xs text-on-surface-variant mb-3">By F. Scott Fitzgerald (1925)</p>
+<p class="text-[11px] text-outline line-clamp-2 leading-relaxed">A pristine archival copy from the first print run, maintained in temperature-controlled...</p>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 bg-surface-container-highest text-on-surface-variant text-xs font-bold py-2 rounded cursor-not-allowed">Reserve</button>
+<button class="px-3 bg-surface-container-high text-on-surface-variant text-xs font-bold py-2 rounded hover:bg-surface-dim transition-colors">Details</button>
+</div>
+</div>
+</article>
+<!-- Book Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex border border-outline-variant/10 group">
+<div class="w-32 flex-shrink-0 relative overflow-hidden">
+<img alt="Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Artistic book cover featuring watercolor illustrations of botanical elements and elegant serif fonts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCimzXfTiDZJBCKYdC6IlQme5Oc8BzKD1dSwvMtOgcrHs1tHC1s6zwed-_YeNj9hdjxBTqoI977te73BZqOvem6eHfm_WewnSMJ54rBIs9ns8cuDXkJB1ECp1lAEwZuKIEQQRljArDp5v-YhLhq11B_uMOnM0jF81swB5VOp8b5MgoDtirHRarwqZqSUuOIRp_HLgVtF28xeU4cZAJ6Jr4vUpuYrCFG687ALfHj78vVuxgGAEaxQ_Q0lmndGA12U8yJ6xMOeKETy1UG"/>
+</div>
+<div class="p-5 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter">Available</span>
+<span class="text-on-surface-variant font-label text-[10px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="shelves">shelves</span>
+                                    RACK C-04
+                                </span>
+</div>
+<h3 class="font-headline font-bold text-on-surface leading-tight mb-1">Botanical Illustrations of the West</h3>
+<p class="text-xs text-on-surface-variant mb-3">By Martha Stewart (2021)</p>
+<p class="text-[11px] text-outline line-clamp-2 leading-relaxed">High-resolution plates and descriptions of flora native to the Pacific Northwest...</p>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 primary-gradient text-on-primary text-xs font-bold py-2 rounded shadow-sm hover:opacity-90 transition-opacity">Borrow</button>
+<button class="px-3 bg-surface-container-high text-on-surface-variant text-xs font-bold py-2 rounded hover:bg-surface-dim transition-colors">Details</button>
+</div>
+</div>
+</article>
+<!-- Book Card 4 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex border border-outline-variant/10 group">
+<div class="w-32 flex-shrink-0 relative overflow-hidden">
+<img alt="Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Bright orange book cover with bold white sans-serif typography on a clean, modern desk with coffee" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCChLVNhy1YM9lfK9Y1gA8_tqyterLdXtPXPJDpWa_csIa6WAvlpC7BA64_L-5ufPBsPVM8kpNg2UEuCqQqi-1UplnCuD5NOLue5XARosr2c0w7W92IqhVLkAX-2_ozcPp0g0yVvkrYoQpaaHA20m_HJnxTj8-h03ZWXb6nw53p3RXcbwQd-O0gW1k7Ve0A0nWv1LHv3_6O90qHG7rKPsz-hlBY8b2tsck1-OyLnou-5sbnmx5AMg5gIrZWdkcHPBhhMawJAUL0OupK"/>
+</div>
+<div class="p-5 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter">Available</span>
+<span class="text-on-surface-variant font-label text-[10px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="shelves">shelves</span>
+                                    RACK D-09
+                                </span>
+</div>
+<h3 class="font-headline font-bold text-on-surface leading-tight mb-1">The Art of Storytelling</h3>
+<p class="text-xs text-on-surface-variant mb-3">By Julian Barnes (2015)</p>
+<p class="text-[11px] text-outline line-clamp-2 leading-relaxed">Exploring narrative structures across film, literature, and digital media...</p>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 primary-gradient text-on-primary text-xs font-bold py-2 rounded shadow-sm hover:opacity-90 transition-opacity">Borrow</button>
+<button class="px-3 bg-surface-container-high text-on-surface-variant text-xs font-bold py-2 rounded hover:bg-surface-dim transition-colors">Details</button>
+</div>
+</div>
+</article>
+</section>
+</div>
+<!-- Pagination / Footer Floating Action -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="primary-gradient text-on-primary w-14 h-14 rounded-full shadow-lg shadow-primary/30 flex items-center justify-center group hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="add" style="font-variation-settings: 'FILL' 0;">add</span>
+<span class="absolute right-full mr-4 bg-primary text-on-primary px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">New Request</span>
+</button>
+</div>
+</main>
+</body></html>
