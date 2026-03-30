@@ -1,0 +1,25 @@
+{
+  "name": "library-management",
+  "version": "1.0.0",
+  "description": "This repo contains code extracted from Stich MCP for BCSE301P Lab component.",
+  "main": "basic.spec.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Agrannya-Singh/library-management.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Agrannya-Singh/library-management/issues"
+  },
+  "homepage": "https://github.com/Agrannya-Singh/library-management#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "lighthouse": "^13.0.3"
+  }
+}
